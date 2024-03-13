@@ -1,0 +1,43 @@
+services:
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+    ports:
+      - 3306:3306
+    networks:
+      - bdnetwork
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=database
+      # - PGDATA=/data/postgresql
+
+    ports:
+      - 5432:5432
+    networks:
+      - bdnetwork
+    volumes:
+      - ./postgresql:/var/lib/postgresql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - bdnetwork
+
+networks:
+  bdnetwork:
+    driver: bridge
