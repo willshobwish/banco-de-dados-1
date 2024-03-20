@@ -1,0 +1,25 @@
+DROP DATABASE IF EXISTS Questao1;
+CREATE DATABASE Questao1;
+USE Questao1;
+DROP TABLE IF EXISTS Funcionario;
+DROP TABLE IF EXISTS Empresa;
+CREATE TABLE Empresa(
+    CNPJ VARCHAR(14) UNIQUE PRIMARY KEY,
+    Nome VARCHAR(300) NOT NULL
+);
+CREATE TABLE Funcionario(
+    Nome VARCHAR(300) NOT NULL,
+    RG VARCHAR(9) UNIQUE NOT NULL PRIMARY KEY,
+    CPF VARCHAR(11) UNIQUE NOT NULL,
+    Companhia VARCHAR(14) NOT NULL,
+    FOREIGN KEY (Companhia) REFERENCES Empresa(CNPJ)
+);
+INSERT INTO Empresa (CNPJ, Nome)
+VALUES ('12345678910121', 'nome testes');
+INSERT INTO Funcionario (Nome, RG, CPF, Companhia)
+VALUES (
+        'Nome funcionario',
+        '123456789',
+        '12345678910',
+        '12345678910121'
+    );
