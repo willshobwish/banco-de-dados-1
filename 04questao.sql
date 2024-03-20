@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS Questao04;
+CREATE DATABASE Questao04;
+USE Questao04;
+CREATE TABLE Armas(
+    Serie VARCHAR(20) UNIQUE NOT NULL PRIMARY KEY,
+    Registro VARCHAR(20),
+    Calibre VARCHAR(20)
+);
+CREATE TABLE Soldado(
+    Registro_militar VARCHAR(20) PRIMARY KEY,
+    Data_nascimento DATE NOT NULL,
+    Armas VARCHAR(20) NOT NULL,
+    FOREIGN KEY (Armas) REFERENCES Armas(Serie)
+);
