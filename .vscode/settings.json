@@ -9,23 +9,9 @@
       "server": "localhost",
       "port": 3306,
       "driver": "MySQL",
-      "name": "a",
-      "database": "database",
-      "username": "admin"
-    },
-    {
-      "mysqlOptions": {
-        "authProtocol": "default",
-        "enableSsl": "Disabled"
-      },
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 3306,
-      "driver": "MySQL",
-      "name": "teste",
-      "database": "database",
-      "username": "root",
-      "askForPassword": true
+      "name": "mysql",
+      "database": "database_teste",
+      "username": "root"
     }
   ]
 }
