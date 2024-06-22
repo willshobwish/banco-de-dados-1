@@ -15,6 +15,7 @@ services:
     # volumes:
     # - ./mysql:/var/lib/mysql
 
+<<<<<<< Updated upstream
   # postgres:
   #   image: postgres
   #   restart: always
@@ -30,6 +31,25 @@ services:
   #     - bdnetwork
   #   volumes:
   #     - ./postgresql:/var/lib/postgresql
+=======
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=database
+      # - PGDATA=/data/postgresql
+    ports:
+      - 5432:5432
+    # networks:
+    #   - bdnetwork
+    # volumes:
+    # - ./postgresql:/var/lib/postgresql
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
   adminer:
     image: adminer
