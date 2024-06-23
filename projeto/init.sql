@@ -21,16 +21,6 @@ CREATE TABLE evento (
     edicao INT
 );
 
-CREATE TABLE projeto (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255),
-    resumo VARCHAR(255),
-    area_do_conhecimento INT,
-    evento INT,
-    FOREIGN KEY (area_do_conhecimento) REFERENCES area_do_conhecimento (id),
-    FOREIGN KEY (evento) REFERENCES evento (id)
-);
-
 CREATE TABLE escola (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
@@ -42,9 +32,19 @@ CREATE TABLE estudante (
     nome VARCHAR(255),
     ano INT NOT NULL,
     escola INT NOT NULL,
-    projeto INT NOT NULL,
-    FOREIGN KEY (projeto) REFERENCES projeto (id),
-    FOREIGN KEY (escola) REFERENCES escola (id),
+    FOREIGN KEY (escola) REFERENCES escola (id)
+);
+
+CREATE TABLE projeto (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255),
+    estudante INT NOT NULL,
+    resumo VARCHAR(255),
+    area_do_conhecimento INT,
+    evento INT,
+    FOREIGN KEY (estudante) REFERENCES estudante (id),
+    FOREIGN KEY (area_do_conhecimento) REFERENCES area_do_conhecimento (id),
+    FOREIGN KEY (evento) REFERENCES evento (id)
 );
 
 CREATE TABLE avaliador (
