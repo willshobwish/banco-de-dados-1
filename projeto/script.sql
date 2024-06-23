@@ -1,3 +1,69 @@
+DROP DATABASE IF EXISTS projeto;
+
+CREATE DATABASE projeto;
+
+USE projeto;
+
+CREATE TABLE departamento (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    acronimo varchar(255)
+);
+
+CREATE TABLE area_do_conhecimento (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255)
+);
+
+CREATE TABLE evento (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    edicao INT
+);
+
+CREATE TABLE escola (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    endereco VARCHAR(255)
+);
+
+CREATE TABLE estudante (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    ano INT NOT NULL,
+    escola INT NOT NULL,
+    FOREIGN KEY (escola) REFERENCES escola (id)
+);
+
+CREATE TABLE projeto (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255),
+    estudante INT NOT NULL,
+    resumo VARCHAR(255),
+    area_do_conhecimento INT,
+    evento INT,
+    FOREIGN KEY (estudante) REFERENCES estudante (id),
+    FOREIGN KEY (area_do_conhecimento) REFERENCES area_do_conhecimento (id),
+    FOREIGN KEY (evento) REFERENCES evento (id)
+);
+
+CREATE TABLE avaliador (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    departamento INT NOT NULL,
+    area_do_conhecimento INT NOT NULL,
+    FOREIGN KEY (departamento) REFERENCES departamento (id),
+    FOREIGN KEY (area_do_conhecimento) REFERENCES area_do_conhecimento (id)
+);
+
+CREATE TABLE nota (
+    projeto INT,
+    avaliador INT,
+    nota FLOAT,
+    PRIMARY KEY (projeto, avaliador),
+    FOREIGN KEY (projeto) REFERENCES projeto (id),
+    FOREIGN KEY (avaliador) REFERENCES avaliador (id)
+);
 INSERT INTO departamento (nome, acronimo) VALUES ("Departamento de Ciências Agrárias", "DCA");
 INSERT INTO departamento (nome, acronimo) VALUES ("Departamento de Ciências Biológicas", "DCB");
 INSERT INTO departamento (nome, acronimo) VALUES ("Departamento de Ciências da Saúde", "DCS");
@@ -232,3 +298,52 @@ INSERT INTO avaliador (nome, departamento, area_do_conhecimento) VALUES ("Millie
 INSERT INTO avaliador (nome, departamento, area_do_conhecimento) VALUES ("Elton Hickle", "4", "4");
 INSERT INTO avaliador (nome, departamento, area_do_conhecimento) VALUES ("Dina Heathcote", "4", "4");
 INSERT INTO avaliador (nome, departamento, area_do_conhecimento) VALUES ("Erich Rohan", "3", "3");
+INSERT INTO nota (projeto, avaliador, nota) VALUES (1, 1, 8.509);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (2, 19, 0.902);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (3, 21, 2.252);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (4, 15, 1.734);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (5, 10, 1.507);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (6, 3, 8.989);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (7, 18, 4.772);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (8, 47, 8.173);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (9, 33, 0.015);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (10, 8, 0.029);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (11, 26, 5.745);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (12, 33, 0.364);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (13, 28, 6.936);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (14, 1, 6.717);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (15, 26, 3.777);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (16, 22, 3.691);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (17, 3, 5.376);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (18, 46, 1.725);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (19, 35, 1.456);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (20, 40, 7.23);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (21, 18, 6.589);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (22, 17, 5.582);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (23, 39, 3.781);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (24, 42, 0.256);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (25, 45, 8.568);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (26, 15, 7.033);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (27, 21, 3.973);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (28, 29, 5.212);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (29, 10, 9.3);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (30, 24, 9.721);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (31, 46, 3.291);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (32, 42, 5.345);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (33, 43, 0.145);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (34, 33, 5.737);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (35, 40, 4.909);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (36, 5, 9.677);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (37, 48, 8.817);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (38, 49, 1.033);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (39, 27, 3.661);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (40, 25, 8.715);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (41, 24, 9.042);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (42, 43, 7.004);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (43, 29, 5.243);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (44, 33, 6.694);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (45, 36, 0.744);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (46, 41, 5.072);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (47, 41, 4.087);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (48, 12, 3.473);
+INSERT INTO nota (projeto, avaliador, nota) VALUES (49, 33, 1.547);
